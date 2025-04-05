@@ -1,4 +1,4 @@
-# Vision-Code-Editor
+# VOXIDE: Vision-Code-Editor
 
 A React-based application showcasing Gemini AI capabilities with writing Code using voice, vision, share screen.
 
