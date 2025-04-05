@@ -1,64 +1,166 @@
 import React from 'react';
-import { Mic, Code, Brain, Settings, Play, FileCode, Users, ChevronRight, Github, Twitter } from 'lucide-react';
+import { Brain, Zap, GitBranch, BarChart, Check, Play, Code, Mic, Github, Twitter} from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-function Homepage({ onGetStarted }: { onGetStarted: () => void }) {
+// Define the props interface
+interface HomepageProps {
+  onGetStarted: () => void;
+}
+
+// Feature card component
+const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-l from-slate-500 to-slate-800 text-white">
-      {/* Navigation */}
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Mic className="w-8 h-8 text-blue-400" />
-            <span className="text-xl font-bold">VoxIDE</span>
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <a href="#features" className="hover:text-blue-400 transition-colors">Features</a>
-            <a href="#demo" className="hover:text-blue-400 transition-colors">Demo</a>
-            <a href="#testimonials" className="hover:text-blue-400 transition-colors">Testimonials</a>
-          </div>
-          <button className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg font-medium transition-colors">
-            Sign Up
-          </button>
+    <div className="bg-gray-900 p-6 rounded-lg">
+      <div className="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-gray-400">{description}</p>
+    </div>
+  );
+};
+
+// Pricing plan card
+const PlanCard = ({
+  title,
+  price,
+  features,
+  isPopular = false,
+  onGetStarted
+}: {
+  title: string;
+  price: string;
+  features: string[];
+  isPopular?: boolean;
+  onGetStarted: () => void;
+}) => {
+  return (
+    <div className={`bg-gray-900 rounded-lg p-8 flex flex-col ${isPopular ? 'border border-blue-600 relative' : ''}`}>
+      {isPopular && (
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+            Most Popular
+          </span>
         </div>
-      </nav>
+      )}
+      <h3 className="text-2xl font-bold mb-6">{title}</h3>
+      <div className="mb-6">
+        <span className="text-4xl font-bold">{price}</span>
+        <span className="text-gray-400">/month</span>
+      </div>
+      <div className="flex-grow">
+        <ul className="space-y-4">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-start">
+              <Check size={20} className="text-blue-400 mr-2 mt-1 flex-shrink-0" />
+              <span className="text-gray-300">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <button
+        onClick={onGetStarted}
+        className={`mt-8 py-3 px-6 rounded-md font-medium transition ${isPopular
+          ? 'bg-blue-600 text-white hover:bg-blue-500'
+          : 'bg-gray-800 text-white hover:bg-gray-700'
+          }`}
+      >
+        Get started
+      </button>
+    </div>
+  );
+};
+
+// Update the component to use the interface
+const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
+  const features = [
+    {
+      icon: <Brain size={24} />,
+      title: "Advanced Recognition",
+      description: "State-of-the-art voice recognition trained on programming commands"
+    },
+    {
+      icon: <Code size={24} />,
+      title: "Multi-Language Support",
+      description: "Works with Python, JavaScript, Java, and many more languages"
+    },
+    {
+      icon: <GitBranch size={24} />,
+      title: "Custom Commands",
+      description: "Create and customize your own voice commands"
+    },
+    {
+      icon: <BarChart size={24} />,
+      title: "Performance Analysis",
+      description: "Real-time performance insights and optimization recommendations."
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-950 text-white">
+      {/* Navbar */}
+{/* Navbar */}
+<nav className="flex justify-between items-center py-4 px-8 border-b border-gray-800">
+  <div className="flex items-center gap-2">
+    <img className="w-20 object-contain" src="./VoxIDE_Logo.png" alt="VoxIDE Logo" />
+    <a href="/" className="text-2xl font-bold text-purple-400">VoxIDE</a>
+  </div>
+  <div className="flex items-center space-x-6">
+    <a href="#features" className="text-gray-300 hover:text-white transition">Features</a>
+    <a href="#docs" className="text-gray-300 hover:text-white transition">Meet</a>
+    <a
+      href="#try"
+      className="ml-4 px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition"
+    >
+      Try for free
+    </a>
+  </div>
+</nav>
+
+
 
       {/* Hero Section */}
-      <section className="flex container mx-auto px-6 py-20 text-center gap-8 justify-center">
-        <div>
-        <h1 className="text-4xl md:text-7xl font-bold mb-8">
-        VoxIDE
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-        Effortlessly edit code using your voice with advanced audio commands.
-No need to type—just open a file and start speaking your instructions.
-Code faster, smarter, and hands-free with voice-powered development.
-        </p>
-
-        </div>
-        <DotLottieReact 
-            className='w-96 h-auto'
-            src="https://lottie.host/742ace54-715c-4099-920d-5dd3a2e0bf7c/Q6EGVeVabT.lottie"
+      <div className="flex items-center justify-between py-20 px-8 lg:px-16">
+        <div className="flex w-full pr-0 lg:pr-12">
+          <div className='w-1/2'>
+            <h1 className="flex justify-center text-5xl lg:text-6xl font-bold text-purple-400 mb-6">VoxIDE</h1>
+            <h6 className='flex justify-center text-l text-purple-300'>'Code with your voice. Build hands-free. Welcome to VoxIDE.'</h6>
+            <p className="text-xl mb-8">
+              Effortlessly edit code using your voice with advanced audio commands.
+              No need to type—just open a file and start speaking your instructions.
+              Code faster, smarter, and hands-free with voice-powered development.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={onGetStarted}
+                className="px-6 py-3 bg-blue-600 text-white text-center rounded-md hover:bg-blue-500 transition flex items-center justify-center"
+              >
+                Get Started <span className="ml-2">→</span>
+              </button>
+              <a href="#how" className="px-6 py-3 border border-gray-700 text-white text-center rounded-md hover:border-gray-500 transition">
+                See how it works
+              </a>
+            </div>
+          </div>
+          <div className='w-1/2'>
+          <DotLottieReact
+            className='w-full h-auto'
+            src="https://lottie.host/e5317963-0d06-4856-b34a-2bde5a0a3b5e/Yrl3W6vsrQ.lottie"
             loop
             autoplay
+          />
+          </div>
+        </div>
+        <div className="hidden lg:block w-1/2">
+          <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
+            <img
+              src="/api/placeholder/600/400"
+              alt="Code editor showing colorful syntax highlighting"
+              className="w-full h-auto"
             />
-
-        <div className="flex flex-col md:flex-row justify-center gap-6"></div>
-        </section>
-        <section className='flex gap-4 justify-center mb-20'>
-        <button
-        onClick={onGetStarted}
-        className="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
-        >
-        <span>Get Started Free</span>
-        <ChevronRight className="w-5 h-5" />
-        </button>
-
-          <button className="bg-slate-700 hover:bg-slate-600 px-8 py-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2">
-            <Play className="w-5 h-5" />
-            <span>Watch Demo</span>
-          </button>
-      </section>
+          </div>
+        </div>
+      </div>
 
       {/* Demo Video Section */}
       <section id="demo" className="container mx-auto px-6 py-20">
@@ -70,54 +172,60 @@ Code faster, smarter, and hands-free with voice-powered development.
       </section>
 
       {/* Features Section */}
-      <section id="features" className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-16">Powerful Features</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <FeatureCard
-            icon={<Brain className="w-8 h-8 text-blue-400" />}
-            title="Advanced Recognition"
-            description="State-of-the-art voice recognition trained on programming commands"
-          />
-          <FeatureCard
-            icon={<Code className="w-8 h-8 text-blue-400" />}
-            title="Multi-Language Support"
-            description="Works with Python, JavaScript, Java, and many more languages"
-          />
-          <FeatureCard
-            icon={<FileCode className="w-8 h-8 text-blue-400" />}
-            title="Smart Navigation"
-            description="Quickly navigate between files and code sections"
-          />
-          <FeatureCard
-            icon={<Settings className="w-8 h-8 text-blue-400" />}
-            title="Custom Commands"
-            description="Create and customize your own voice commands"
-          />
+      <div className="py-16 px-8" id="features">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-blue-400 mb-4">Supercharge Your Development</h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          Powerful Features to Enhance Your Workflow
+          </p>
         </div>
-      </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {features.map((feature, index) => (
+            <FeatureCard key={index} {...feature} />
+          ))}
+        </div>
+      </div>
 
       {/* Testimonials Section */}
       <section id="testimonials" className="container mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-16">What Developers Say</h2>
+        <h2 className="text-4xl font-bold text-center mb-16">Meet Our Team</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <TestimonialCard
-            image="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=150"
-            name="David Chen"
-            role="Senior Developer"
-            quote="VoiceCode has completely changed how I work. I can code faster and with less strain on my hands."
-          />
-          <TestimonialCard
-            image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
-            name="Sarah Miller"
-            role="Full Stack Engineer"
-            quote="The accuracy is impressive. It understands complex commands and rarely makes mistakes."
-          />
-          <TestimonialCard
-            image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
-            name="Tom Wilson"
-            role="Tech Lead"
-            quote="Perfect for pair programming sessions. The whole team can follow along easily."
-          />
+          <div className="bg-gray-900 p-6 rounded-lg text-center">
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
+              alt="David Chen"
+              className="w-16 h-16 rounded-full mx-auto mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2">Aryan Mittal</h3>
+            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
+            <p className="text-gray-300">
+              "VoiceCode has completely changed how I work. I can code faster and with less strain on my hands."
+            </p>
+          </div>
+          <div className="bg-gray-900 p-6 rounded-lg text-center">
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
+              alt="Sarah Miller"
+              className="w-16 h-16 rounded-full mx-auto mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2">Vinit Kumar Arora</h3>
+            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
+            <p className="text-gray-300">
+              "The accuracy is impressive. It understands complex commands and rarely makes mistakes."
+            </p>
+          </div>
+          <div className="bg-gray-900 p-6 rounded-lg text-center">
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150"
+              alt="Tom Wilson"
+              className="w-16 h-16 rounded-full mx-auto mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2">Vidhan Gupta</h3>
+            <p className="text-gray-400 text-sm mb-4">Tech Lead</p>
+            <p className="text-gray-300">
+              "Perfect for pair programming sessions. The whole team can follow along easily."
+            </p>
+          </div>
         </div>
       </section>
 
@@ -128,7 +236,7 @@ Code faster, smarter, and hands-free with voice-powered development.
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Mic className="w-6 h-6 text-blue-400" />
-                <span className="font-bold">VoiceCode</span>
+                <span className="font-bold">VoxIDE</span>
               </div>
               <p className="text-gray-400">Transform your coding experience with the power of voice.</p>
             </div>
@@ -136,8 +244,7 @@ Code faster, smarter, and hands-free with voice-powered development.
               <h3 className="font-bold mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-blue-400">Features</a></li>
-                <li><a href="#" className="hover:text-blue-400">Pricing</a></li>
-                <li><a href="#" className="hover:text-blue-400">Documentation</a></li>
+                <li><a href="#" className="hover:text-blue-400">Meet</a></li>
               </ul>
             </div>
             <div>
@@ -161,37 +268,12 @@ Code faster, smarter, and hands-free with voice-powered development.
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 VoiceCode. All rights reserved.</p>
+            <p>&copy; 2025 VoxIDE. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
   );
-}
-
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <div className="bg-slate-800 p-6 rounded-lg">
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-400">{description}</p>
-    </div>
-  );
-}
-
-function TestimonialCard({ image, name, role, quote }: { image: string; name: string; role: string; quote: string }) {
-  return (
-    <div className="bg-slate-800 p-6 rounded-lg">
-      <div className="flex items-center space-x-4 mb-4">
-        <img src={image} alt={name} className="w-12 h-12 rounded-full object-cover" />
-        <div>
-          <h4 className="font-bold">{name}</h4>
-          <p className="text-gray-400">{role}</p>
-        </div>
-      </div>
-      <p className="text-gray-300 italic">&ldquo;{quote}&rdquo;</p>
-    </div>
-  );
-}
+};
 
 export default Homepage;
