@@ -1,9 +1,10 @@
 import React from 'react';
 import { Mic, Code, Brain, Settings, Play, FileCode, Users, ChevronRight, Github, Twitter } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 function Homepage({ onGetStarted }: { onGetStarted: () => void }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+    <div className="min-h-screen bg-gradient-to-l from-slate-500 to-slate-800 text-white">
       {/* Navigation */}
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -23,7 +24,8 @@ function Homepage({ onGetStarted }: { onGetStarted: () => void }) {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20 text-center">
+      <section className="flex container mx-auto px-6 py-20 text-center gap-8 justify-center">
+        <div>
         <h1 className="text-4xl md:text-7xl font-bold mb-8">
         VoxIDE
         </h1>
@@ -32,7 +34,18 @@ function Homepage({ onGetStarted }: { onGetStarted: () => void }) {
 No need to type—just open a file and start speaking your instructions.
 Code faster, smarter, and hands-free with voice-powered development.
         </p>
-        <div className="flex flex-col md:flex-row justify-center gap-6">
+
+        </div>
+        <DotLottieReact 
+            className='w-96 h-auto'
+            src="https://lottie.host/742ace54-715c-4099-920d-5dd3a2e0bf7c/Q6EGVeVabT.lottie"
+            loop
+            autoplay
+            />
+
+        <div className="flex flex-col md:flex-row justify-center gap-6"></div>
+        </section>
+        <section className='flex gap-4 justify-center mb-20'>
         <button
         onClick={onGetStarted}
         className="bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2"
@@ -45,7 +58,6 @@ Code faster, smarter, and hands-free with voice-powered development.
             <Play className="w-5 h-5" />
             <span>Watch Demo</span>
           </button>
-        </div>
       </section>
 
       {/* Demo Video Section */}
