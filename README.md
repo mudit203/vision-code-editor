@@ -47,7 +47,7 @@ npm start
 The application will open in your browser at http://localhost:3000
 
 ## Project Structure
-...
+```
 ├── public/               # Static files
 │   ├── favicon.ico       # Favicon
 │   ├── [index.html](http://_vscodecontentref_/2)        # HTML template
@@ -82,7 +82,7 @@ The application will open in your browser at http://localhost:3000
 ├── [tailwind.config.js](http://_vscodecontentref_/6)    # Tailwind CSS configuration
 ├── [tsconfig.json](http://_vscodecontentref_/7)         # TypeScript configuration
 └── [upgrade-deps.sh](http://_vscodecontentref_/8)       # Dependency upgrade script
-...
+```
 
 ## API Endpoints
 
