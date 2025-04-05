@@ -1,6 +1,6 @@
 # Vision-Code-Editor
 
-A React-based demo application showcasing Gemini AI capabilities with fluid simulation visualization.
+A React-based application showcasing Gemini AI capabilities with writing Code using voice, vision, share screen.
 
 ## Features
 
