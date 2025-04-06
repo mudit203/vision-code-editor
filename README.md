@@ -1,13 +1,14 @@
 # VOXIDE: Vision-Code-Editor
 
 A Web-based application showcasing Gemini AI capabilities with writing Code using voice, vision, share screen.
+Effortlessly edit code using your voice with advanced audio commands. No need to type—just open a file and start speaking your instructions. Code faster, smarter, and hands-free with voice-powered development.
 
 ## Features
 
-- Real-time fluid simulation visualization
-- File reading and modification API
-- React-based UI with TypeScript support
-- Express backend server
+- Voice and Vision Integration
+- File management API
+- Real Time Collaboration
+- Integrated real time error detection
 
 ## Prerequisites
 
@@ -89,3 +90,5 @@ The application will open in your browser at http://localhost:3000
 - `GET /api/file` - Read file contents
 - `POST /api/file` - Modify file contents
 
+## Demo
+[Watch the demo video](https://youtu.be/M7i5YU08m9I)
