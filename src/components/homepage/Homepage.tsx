@@ -164,12 +164,21 @@ const Homepage: React.FC<HomepageProps> = ({ onGetStarted }) => {
 
       {/* Demo Video Section */}
       <section id="demo" className="container mx-auto px-6 py-20">
-        <div className="bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
-          <div className="aspect-video bg-slate-900 flex items-center justify-center">
-            <Play className="w-20 h-20 text-blue-400 opacity-50" />
-          </div>
-        </div>
-      </section>
+  <div className="bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
+    <div className="aspect-video bg-slate-900">
+      <iframe
+        className="w-full h-full"
+        src="https://www.youtube.com/embed/M7i5YU08m9I"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+      
 
       {/* Features Section */}
       <div className="py-16 px-8" id="features">
