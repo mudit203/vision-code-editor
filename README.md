@@ -91,4 +91,4 @@ The application will open in your browser at http://localhost:3000
 - `POST /api/file` - Modify file contents
 
 ## Demo
-[Watch the demo video](https://youtu.be/xFI2oi2PIjA)
+[Watch the demo video](https://youtu.be/M7i5YU08m9I)
